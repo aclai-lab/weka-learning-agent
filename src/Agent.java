@@ -14,7 +14,7 @@ public class Agent {
 	protected String m_agentName;
 	
 	/**
-	 * Problema del agente.
+	 * Problema dell'agente.
 	 */
 	protected Problem m_problem;
 	
@@ -120,7 +120,7 @@ public class Agent {
 			/** Non ci sono abbastanza istanze per predire. */
 			if (data.numInstances() < MININSTANCES) {
 				/** Inserimento della classe. */
-				System.out.println("Non posso ancora predire nulla perché ci sono poche istanze.");
+				System.out.println("Non posso ancora predire nulla perchÃ© ci sono poche istanze.");
 				insertAttributeValue(instanceValues, attrIndex);
 			}
 			else {

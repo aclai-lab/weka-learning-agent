@@ -33,7 +33,7 @@ public class Problem {
 		String problemName = reader.readLine();
 		
 		m_problemName = problemName;
-		m_problemFileName = problemName + ".arff";
+		m_problemFileName = problemName + (problemName.endsWith(".arff") ? "" : ".arff");
 		m_problemFile = new File(m_problemFileName);
 		
 		if (m_problemFile.isFile()) {
@@ -47,7 +47,7 @@ public class Problem {
 	}
 	
 	/**
-	 * Funzione che recupera il problema (gi‡ esistente).
+	 * Funzione che recupera il problema (gi√† esistente).
 	 * 
 	 * @throws Exception
 	 */
@@ -120,7 +120,7 @@ public class Problem {
 				
 				/** Ciclo per aggiungere i valori nominali. */
 				for (int j=0; j<subWords.length; j++) 
-					/** Se la sottoparola (= valore nominale) Ë non vuota, aggiungi. */
+					/** Se la sottoparola (= valore nominale) √® non vuota, aggiungi. */
 					if (!subWords[j].isEmpty()) nominalValues.add(subWords[j]);
 				
 				/** Aggiungiamo l'attributo nominale. */
