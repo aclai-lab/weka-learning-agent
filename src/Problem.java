@@ -1,7 +1,6 @@
 /** Librerie */
 import java.io.*;
 import java.util.ArrayList;
-import java.util.function.IntPredicate;
 
 import weka.core.*;
 import weka.core.converters.ConverterUtils.DataSource;
