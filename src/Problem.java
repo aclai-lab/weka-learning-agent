@@ -1,6 +1,8 @@
 /** Librerie */
 import java.io.*;
 import java.util.ArrayList;
+import java.util.function.IntPredicate;
+
 import weka.core.*;
 import weka.core.converters.ConverterUtils.DataSource;
 
@@ -29,7 +31,8 @@ public class Problem {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		/** Inserimento del nome del problema */
-		System.out.println("Inserisci il nome del problema:");
+		InputManager.systemMessage("inserire il nome del problema:");
+		InputManager.prompt();
 		String problemName = reader.readLine();
 		
 		m_problemName = problemName;
@@ -37,11 +40,11 @@ public class Problem {
 		m_problemFile = new File(m_problemFileName);
 		
 		if (m_problemFile.isFile()) {
-			System.out.println("Conosco questo problema!");
+			InputManager.systemMessage("il problema è già presente in memoria");
 			loadProblem();
 		}
 		else {
-			System.out.println("Non conosco questo problema!");
+			InputManager.systemMessage("il problema non è presente in memoria");
 			initializeProblem();
 		}
 	}
@@ -74,16 +77,27 @@ public class Problem {
 		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		
 		/** Lettura del numero degli attributi */		
-		do {
-			System.out.println("Inserire numero di attributi del problema (deve essere almeno 2): ");
-			numAttributes = Integer.parseInt(reader.readLine());
+		while (true) {
+			try {
+				InputManager.systemMessage("inserire il numero di attributi del problema (almeno 2): ");
+				InputManager.prompt();
+				numAttributes = InputManager.parseInt(reader.readLine());
+
+				if ((numAttributes >= 2))
+					break;
+				
+				InputManager.error("troppi pochi attributi");
+			} catch (InputTypeException e) {
+				InputManager.error(e.getMessage());
+				continue;
+			}
 		}
-		while (numAttributes < 2);
 		
 		/** Attributi del problema. */
 		ArrayList<Attribute> attributes = new ArrayList<Attribute>(numAttributes);
 		
-		System.out.println("\nInserire i nomi degli attributi e il loro tipo secondo la seguente sintassi\n" + 
+		System.out.println();
+		InputManager.systemMessage("inserire i nomi degli attributi e il loro tipo secondo la seguente sintassi\n" + 
 				"\t- <nome> <numeric>, oppure\n" +
 				"\t- <nome> <valore1, valore2, ...>\n\n" + 
 				"\tAd esempio: \n" +
@@ -95,17 +109,27 @@ public class Problem {
 			
 			/** Linea in input. */
 			String inputLine;
+			InputManager.prompt();
 			
 			/** Definizione dell'attributo. */
-			System.out.print("Attributo numero " + (i+1) + ": ");
+			System.out.print("attributo " + (i+1) + ": ");
 			
 			/** Lettura della riga rimuovendo tutti gli spazi tranne uno tra le parole. */
 			inputLine = reader.readLine().replaceAll("\\s{2,}", " ").trim();  
 			
 			/** Le parole della riga. */
 			String[] words;
-			words = inputLine.split(" "); 
-			
+			words = inputLine.split(" ");
+
+			if (words.length > 2)
+				InputManager.warn("sono stati passati " + words.length +
+					" argomenti: quelli dal terzo in poi verranno ignorati");
+			else if (words.length < 2) {
+				InputManager.error("sono stati passati " + words.length +
+					" argomenti; è necessario passarne esattamente 2");
+				i--; continue;
+			}
+
 			/** Attributo numerico */
 			if (words[1].toLowerCase().equals("numeric")) 
 				/** Aggiungiamo l'attributo numerico. */
@@ -115,16 +139,21 @@ public class Problem {
 				/** Contenitore dei valori nominali. */
 				ArrayList<String> nominalValues = new ArrayList<String>();
 				
-				/** Le sottoparole che rappresentano i valori nominali. */
-				String[] subWords = words[1].split(",");
-				
-				/** Ciclo per aggiungere i valori nominali. */
-				for (int j=0; j<subWords.length; j++) 
-					/** Se la sottoparola (= valore nominale) è non vuota, aggiungi. */
-					if (!subWords[j].isEmpty()) nominalValues.add(subWords[j]);
-				
-				/** Aggiungiamo l'attributo nominale. */
-				attributes.add(new Attribute(words[0],nominalValues));
+				try {
+					/** Le sottoparole che rappresentano i valori nominali. */
+					String[] subWords = InputManager.parseDomain(words[1]).split(",");
+					
+					/** Ciclo per aggiungere i valori nominali. */
+					for (int j=0; j<subWords.length; j++) 
+						/** Se la sottoparola (= valore nominale) è non vuota, aggiungi. */
+						if (!subWords[j].isEmpty()) nominalValues.add(subWords[j]);
+					
+					/** Aggiungiamo l'attributo nominale. */
+					attributes.add(new Attribute(words[0],nominalValues));
+				} catch (InputTypeException e) {
+					InputManager.error("\"" + words[1] + "\" non è un dominio valido");
+					i--; continue;
+				}
 			}
 		}
 		
@@ -172,5 +201,15 @@ public class Problem {
 	public void addInstance(Instance instance) {
 		
 		m_data.add(instance);
+	}
+
+	/**
+	 * Funzione che ritorna il nome del problema.
+	 * 
+	 * @return nome del problema
+	 */
+	public String getName() {
+		
+		return m_problemName;
 	}
 }

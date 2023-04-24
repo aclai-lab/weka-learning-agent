@@ -4,6 +4,8 @@ public class Main {
 	
 	public static void main(String[] args) throws Exception {
 		
+		/** Setta il nome dell'utente. */
+		InputManager.setName("luke");
 		/** Creazione nuovo problema. */
 		Problem problem = new Problem();
 		/** Creazione nuovo agente. */

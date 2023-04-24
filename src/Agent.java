@@ -1,5 +1,7 @@
 /** Librerie */
 import java.io.*;
+import java.text.DecimalFormat;
+
 import weka.core.*;
 import weka.classifiers.*;
 
@@ -35,8 +37,20 @@ public class Agent {
 		m_agentName = agentName;
 		m_problem = problem;
 		m_classifier = classifier;
+
+		System.out.println("\n" + Colors.blue("sistema") + ": avvio dell'agente " + agentName + " in corso: attendere...");
+		System.out.println(name() + ": Ciao! Sono " + m_agentName +
+			" e sono qui per imparare tutto su " + Colors.blue(problem.getName()) + "! :)");
 	}
-	
+
+	/**
+	 * Ritorna il nome dell'agente colorato come stringa.
+	 * @return
+	 */
+	private String name() {
+		return Colors.cyan(getAgentName());
+	}
+
 	/**
 	 * Funzione che fa imparare all'agente.
 	 * 
@@ -72,22 +86,41 @@ public class Agent {
 		/** Non ci sono abbastanza istanze */
 		if (data.numInstances() < MININSTANCES) {
 			
-			System.out.println("Il problema ha " + data.numInstances() + " instanze. " +
-					"Bisogna aver almeno " + MININSTANCES + " per poter imparare.");
+			System.out.println(name() + ": il problema ha " + data.numInstances() + " instanze; " +
+					"ma ho bisogno di almeno " + MININSTANCES + " per poter imparare :(");
 			
-			do {
-				System.out.println("Quante nuove instanze si vuol inserire? (NB: Devono essere almeno " + (MININSTANCES - data.numInstances()) + ")");
-				numNewInstances = Integer.parseInt(reader.readLine());
+			while (true) {
+				System.out.println(name() + ": quante nuove instanze si vuol inserire? " +
+					"(almeno " + (MININSTANCES - data.numInstances()) + ")");
+				InputManager.prompt();
+				try {
+					numNewInstances = InputManager.parseInt(reader.readLine());
+				} catch (Exception e) {
+					InputManager.error(e.getMessage());
+					continue;
+				}
+
+				if (data.numInstances() + numNewInstances >= MININSTANCES)
+					break;
 			} 
-			while(data.numInstances() + numNewInstances < MININSTANCES);
 		}
 		/** Ci sono abbastanza istanze. */
 		else {
-			do {
-				System.out.println("Quante nuove instanze si vuol inserire? (NB: Deve essere almeno 1)");
-				numNewInstances = Integer.parseInt(reader.readLine());
+			while (true) {
+				System.out.println(name() + ": quante nuove instanze si vuol inserire? (almeno 1)");
+				InputManager.prompt();
+				try {
+					numNewInstances = InputManager.parseInt(reader.readLine());
+				} catch (Exception e) {
+					InputManager.error(e.getMessage());
+					continue;
+				}
+
+				if (numNewInstances > 0)
+					break;
+
+				InputManager.error("troppe poche istanze");
 			} 
-			while(numNewInstances < 1);
 		}
 		
 		return numNewInstances;
@@ -103,6 +136,8 @@ public class Agent {
 		
 		/** Definizione del problema. */
 		Instances data = getProblemDefinition();
+
+		System.out.println(name() + ": bene! Aggiungiamo " + Colors.blue("" + numNewInstances) + " nuove istanze!");
 		
 		/** Ciclo per le nuove istanze. */
 		for (; numNewInstances > 0; numNewInstances--) {
@@ -112,22 +147,22 @@ public class Agent {
 			/** Valori della nuova instanza. */
 			double[] instanceValues = new double[data.numAttributes()];
 			
-			System.out.println("Nuova istanza -->");
+			System.out.println("○ nuova istanza:");
 			/** Inserimento dei valori degli attributi, tranne quello della classe. */
 			for (attrIndex = 0; attrIndex < data.numAttributes()-1; attrIndex++) 
-				insertAttributeValue(instanceValues, attrIndex);
+				insertAttributeValue(instanceValues, attrIndex, attrIndex == data.numAttributes()-2, false);
 			
 			/** Non ci sono abbastanza istanze per predire. */
 			if (data.numInstances() < MININSTANCES) {
 				/** Inserimento della classe. */
-				System.out.println("Non posso ancora predire nulla perché ci sono poche istanze.");
-				insertAttributeValue(instanceValues, attrIndex);
+				System.out.println("    │     └── " + name() + ": non posso ancora predire nulla perché ci sono poche istanze.");
+				insertAttributeValue(instanceValues, attrIndex, true, true);
 			}
 			else {
 				/** Prima di inserire la classe vera, proviamo a predire. */
 				predict(new DenseInstance(1.0, instanceValues));
 				/** Inserimento della classe vera. */
-				insertAttributeValue(instanceValues, attrIndex);
+				insertAttributeValue(instanceValues, attrIndex, true, true);
 			}
 			
 			/** Aggiungiamo la nuova istanza al problema. */
@@ -155,7 +190,9 @@ public class Agent {
 		Evaluation evaluation = new Evaluation(data);
 		evaluation.evaluateModel(getClassifier(), data);
 		/** Stampiamo il risultato. */
-		System.out.println("Credo che questa istanza sia "+ data.classAttribute().value((int) result) + " e sono sicuro al "+ (1 - evaluation.errorRate())*100 + " percento");
+		System.out.println("    │     └── " + name() + ": credo che questa istanza sia " +
+			Colors.blue(data.classAttribute().value((int) result)) +
+			" e sono sicuro al "+ (new DecimalFormat("###.##")).format((1 - evaluation.errorRate())*100) + "%");
 	}
 	
 	/**
@@ -163,25 +200,53 @@ public class Agent {
 	 * 
 	 * @param instanceValues contenitore di valori dell'instanza
 	 * @param attrIndex indice del valore da aggiungere
+	 * @param isLast specifica se è l'ultimo attributo da inserire
+	 * @param isClass specifica se si sta inserendo il valore di una classe
 	 * @throws IOException
 	 */
-	public void insertAttributeValue(double[] instanceValues, int attrIndex) throws IOException {
+	public void insertAttributeValue(double[] instanceValues, int attrIndex, boolean isLast, boolean isClass)
+												throws IOException {
 		
-		/** Definizione del problema. */
-		Instances data = getProblemDefinition();
-		/** Lettore dalla console. */
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-		
-		/** Inserimento valore del attributo */
-		System.out.print("Inserisci " + data.attribute(attrIndex).name() + ": ");
-		String value = reader.readLine();
-		
-		/** Attributo numerico. */
-		if (data.attribute(attrIndex).isNumeric())
-			instanceValues[attrIndex] = Double.parseDouble(value);
-		/** Attributo nominale. */
-		else 
-			instanceValues[attrIndex] = data.attribute(attrIndex).indexOfValue(value);
+
+		String c = "├";
+		if (isLast)
+			c = "└";
+
+		String cl = "";
+		if (isClass)
+			cl = " (classe)";
+	
+		while (true) {
+			try {
+				/** Definizione del problema. */
+				Instances data = getProblemDefinition();
+				/** Lettore dalla console. */
+				BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+				
+				/** Inserimento valore del attributo */
+				System.out.print("    "+c+"── Inserisci " + data.attribute(attrIndex).name() + cl + ": ");
+				String value = reader.readLine();
+				
+				/** Attributo numerico. */
+				if (data.attribute(attrIndex).isNumeric())
+					instanceValues[attrIndex] = InputManager.parseDouble(value);
+				/** Attributo nominale. */
+				else {
+					int i = data.attribute(attrIndex).indexOfValue(value);
+
+					if (i < 0) {
+						System.err.println("    │     └── " + Colors.red("errore") + ": il valore \"" + value +
+							"\" non appartiene al dominio di questo attributo");
+						continue;
+					}
+					instanceValues[attrIndex] = i;
+				}
+				break;
+			} catch (InputTypeException e) {
+				System.err.println("    │     └── " + Colors.red("errore") + ": " + e.getMessage());
+				continue;
+			}
+		}
 	}
 	
 	/**
