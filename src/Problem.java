@@ -78,9 +78,9 @@ public class Problem {
 		/** Lettura del numero degli attributi */		
 		while (true) {
 			try {
-				InputManager.systemMessage("inserire il numero di attributi del problema (almeno 2): ");
+				InputManager.systemMessage("inserire il numero di attributi del problema (almeno 1): ");
 				InputManager.prompt();
-				numAttributes = InputManager.parseInt(reader.readLine());
+				numAttributes = InputManager.parseInt(reader.readLine()) + 1;
 
 				if ((numAttributes >= 2))
 					break;
@@ -110,8 +110,12 @@ public class Problem {
 			String inputLine;
 			InputManager.prompt();
 			
-			/** Definizione dell'attributo. */
-			System.out.print("attributo " + (i+1) + ": ");
+			/** Definizione dell'attributo/classe. */
+			if (i<numAttributes-1)
+				System.out.print("attributo " + (i+1) + ": ");
+			else
+				System.out.print("classe: ");
+
 			
 			/** Lettura della riga rimuovendo tutti gli spazi tranne uno tra le parole. */
 			inputLine = reader.readLine().replaceAll("\\s{2,}", " ").trim();  
