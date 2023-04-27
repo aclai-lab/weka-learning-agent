@@ -1,112 +1,111 @@
-@relation 'zoo-weka.filters.unsupervised.attribute.NumericToBinary-R2-5,7'
+@relation 'zoo'
 
-@attribute nome_animale {oritteropo,antilope,spigola,orso,cinghiale,bufalo,vitello,carpa,'pesce gatto',cavia,ghepardo,pollo,cavedano,vongola,granchio,gambero,corvo,cervo,palombo,delfino,colomba,anatra,elefante,fenicottero,pulce,rana,'pipistrello della frutta',giraffa,umano,moscerino,capra,gorilla,gabbiano,eglefino,criceto,lepre,falco,aringa,ape,'mosca domestica',kiwi,coccinella,allodola,leopardo,leone,aragosta,lince,visone,talpa,mangusta,falena,tritone,polpo,opossum,orice,struzzo,parrocchetto,pinguino,fagiano,luccio,piranha,vipera,ornitorinco,puzzola,pony,focena,puma,gatto,procione,renna,nandù,scorpione,'cavalluccio marino',foca,'leone marino','serpente di mare','vespa marina',skimmer,skua,orbettino,lumaca,sogliola,passero,scoiattolo,'stella marina',pastinaca,cigno,termite,rospo,tartaruga,tuatara,tonno,vampiro,arvicola,avvoltoio,wallaby,vespa,lupo,verme,scricciolo}
 @attribute uova {0,1}
 @attribute vola {0,1}
 @attribute 'spina dorsale' {0,1}
-@attribute respiro {0,1}
+@attribute polmoni {0,1}
 @attribute zampe numeric
 @attribute coda {0,1}
 @attribute classe {mammifero,pesce,uccello,invertebrato,insetto,anfibio,rettile,uccellino}
 
 @data
-oritteropo,0,0,1,1,4,0,mammifero
-antilope,0,0,1,1,4,1,mammifero
-spigola,1,0,1,0,0,1,pesce
-orso,0,0,1,1,4,0,mammifero
-cinghiale,0,0,1,1,4,1,mammifero
-bufalo,0,0,1,1,4,1,mammifero
-vitello,0,0,1,1,4,1,mammifero
-carpa,1,0,1,0,0,1,pesce
-'pesce gatto',1,0,1,0,0,1,pesce
-cavia,0,0,1,1,4,0,mammifero
-ghepardo,0,0,1,1,4,1,mammifero
-pollo,1,1,1,1,2,1,uccello
-cavedano,1,0,1,0,0,1,pesce
-vongola,1,0,0,0,0,0,invertebrato
-granchio,1,0,0,0,4,0,invertebrato
-gambero,1,0,0,0,6,0,invertebrato
-corvo,1,1,1,1,2,1,uccello
-cervo,0,0,1,1,4,1,mammifero
-palombo,1,0,1,0,0,1,pesce
-delfino,0,0,1,1,0,1,mammifero
-colomba,1,1,1,1,2,1,uccello
-anatra,1,1,1,1,2,1,uccello
-elefante,0,0,1,1,4,1,mammifero
-fenicottero,1,1,1,1,2,1,uccello
-pulce,1,0,0,1,6,0,insetto
-rana,1,0,1,1,4,0,anfibio
-'pipistrello della frutta',0,1,1,1,2,1,mammifero
-giraffa,0,0,1,1,4,1,mammifero
-umano,0,0,1,1,2,0,mammifero
-moscerino,1,1,0,1,6,0,insetto
-capra,0,0,1,1,4,1,mammifero
-gorilla,0,0,1,1,2,0,mammifero
-gabbiano,1,1,1,1,2,1,uccello
-eglefino,1,0,1,0,0,1,pesce
-criceto,0,0,1,1,4,1,mammifero
-lepre,0,0,1,1,4,1,mammifero
-falco,1,1,1,1,2,1,uccello
-aringa,1,0,1,0,0,1,pesce
-ape,1,1,0,1,6,0,insetto
-'mosca domestica',1,1,0,1,6,0,insetto
-kiwi,1,0,1,1,2,1,uccello
-coccinella,1,1,0,1,6,0,insetto
-allodola,1,1,1,1,2,1,uccello
-leopardo,0,0,1,1,4,1,mammifero
-leone,0,0,1,1,4,1,mammifero
-aragosta,1,0,0,0,6,0,invertebrato
-lince,0,0,1,1,4,1,mammifero
-visone,0,0,1,1,4,1,mammifero
-talpa,0,0,1,1,4,1,mammifero
-mangusta,0,0,1,1,4,1,mammifero
-falena,1,1,0,1,6,0,insetto
-tritone,1,0,1,1,4,1,anfibio
-polpo,1,0,0,0,8,0,invertebrato
-opossum,0,0,1,1,4,1,mammifero
-orice,0,0,1,1,4,1,mammifero
-struzzo,1,0,1,1,2,1,uccello
-parrocchetto,1,1,1,1,2,1,uccello
-pinguino,1,0,1,1,2,1,uccello
-fagiano,1,1,1,1,2,1,uccello
-luccio,1,0,1,0,0,1,pesce
-piranha,1,0,1,0,0,1,pesce
-vipera,1,0,1,1,0,1,rettile
-ornitorinco,1,0,1,1,4,1,mammifero
-puzzola,0,0,1,1,4,1,mammifero
-pony,0,0,1,1,4,1,mammifero
-focena,0,0,1,1,0,1,mammifero
-puma,0,0,1,1,4,1,mammifero
-gatto,0,0,1,1,4,1,mammifero
-procione,0,0,1,1,4,1,mammifero
-renna,0,0,1,1,4,1,mammifero
-nandù,1,0,1,1,2,1,uccello
-scorpione,0,0,0,1,8,1,invertebrato
-'cavalluccio marino',1,0,1,0,0,1,pesce
-foca,0,0,1,1,0,0,mammifero
-'leone marino',0,0,1,1,2,1,mammifero
-'serpente di mare',0,0,1,0,0,1,rettile
-'vespa marina',1,0,0,0,0,0,invertebrato
-skimmer,1,1,1,1,2,1,uccellino
-skua,1,1,1,1,2,1,uccello
-orbettino,1,0,1,1,0,1,rettile
-lumaca,1,0,0,1,0,0,invertebrato
-sogliola,1,0,1,0,0,1,pesce
-passero,1,1,1,1,2,1,uccello
-scoiattolo,0,0,1,1,2,1,mammifero
-'stella marina',1,0,0,0,5,0,invertebrato
-pastinaca,1,0,1,0,0,1,pesce
-cigno,1,1,1,1,2,1,uccello
-termite,1,0,0,1,6,0,insetto
-rospo,1,0,1,1,4,0,anfibio
-tartaruga,1,0,1,1,4,1,rettile
-tuatara,1,0,1,1,4,1,rettile
-tonno,1,0,1,0,0,1,pesce
-vampiro,0,1,1,1,2,1,mammifero
-arvicola,0,0,1,1,4,1,mammifero
-avvoltoio,1,1,1,1,2,1,uccello
-wallaby,0,0,1,1,2,1,mammifero
-vespa,1,1,0,1,6,0,insetto
-lupo,0,0,1,1,4,1,mammifero
-verme,1,0,0,1,0,0,invertebrato
-scricciolo,1,1,1,1,2,1,uccello
+0,0,1,1,4,0,mammifero
+0,0,1,1,4,1,mammifero
+1,0,1,0,0,1,pesce
+0,0,1,1,4,0,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,0,1,0,0,1,pesce
+1,0,1,0,0,1,pesce
+0,0,1,1,4,0,mammifero
+0,0,1,1,4,1,mammifero
+1,1,1,1,2,1,uccello
+1,0,1,0,0,1,pesce
+1,0,0,0,0,0,invertebrato
+1,0,0,0,4,0,invertebrato
+1,0,0,0,6,0,invertebrato
+1,1,1,1,2,1,uccello
+0,0,1,1,4,1,mammifero
+1,0,1,0,0,1,pesce
+0,0,1,1,0,1,mammifero
+1,1,1,1,2,1,uccello
+1,1,1,1,2,1,uccello
+0,0,1,1,4,1,mammifero
+1,1,1,1,2,1,uccello
+1,0,0,1,6,0,insetto
+1,0,1,1,4,0,anfibio
+0,1,1,1,2,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,2,0,mammifero
+1,1,0,1,6,0,insetto
+0,0,1,1,4,1,mammifero
+0,0,1,1,2,0,mammifero
+1,1,1,1,2,1,uccello
+1,0,1,0,0,1,pesce
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,1,1,1,2,1,uccello
+1,0,1,0,0,1,pesce
+1,1,0,1,6,0,insetto
+1,1,0,1,6,0,insetto
+1,0,1,1,2,1,uccello
+1,1,0,1,6,0,insetto
+1,1,1,1,2,1,uccello
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,0,0,0,6,0,invertebrato
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,1,0,1,6,0,insetto
+1,0,1,1,4,1,anfibio
+1,0,0,0,8,0,invertebrato
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,0,1,1,2,1,uccello
+1,1,1,1,2,1,uccello
+1,0,1,1,2,1,uccello
+1,1,1,1,2,1,uccello
+1,0,1,0,0,1,pesce
+1,0,1,0,0,1,pesce
+1,0,1,1,0,1,rettile
+1,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,0,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+0,0,1,1,4,1,mammifero
+1,0,1,1,2,1,uccello
+0,0,0,1,8,1,invertebrato
+1,0,1,0,0,1,pesce
+0,0,1,1,0,0,mammifero
+0,0,1,1,2,1,mammifero
+0,0,1,0,0,1,rettile
+1,0,0,0,0,0,invertebrato
+1,1,1,1,2,1,uccellino
+1,1,1,1,2,1,uccello
+1,0,1,1,0,1,rettile
+1,0,0,1,0,0,invertebrato
+1,0,1,0,0,1,pesce
+1,1,1,1,2,1,uccello
+0,0,1,1,2,1,mammifero
+1,0,0,0,5,0,invertebrato
+1,0,1,0,0,1,pesce
+1,1,1,1,2,1,uccello
+1,0,0,1,6,0,insetto
+1,0,1,1,4,0,anfibio
+1,0,1,1,4,1,rettile
+1,0,1,1,4,1,rettile
+1,0,1,0,0,1,pesce
+0,1,1,1,2,1,mammifero
+0,0,1,1,4,1,mammifero
+1,1,1,1,2,1,uccello
+0,0,1,1,2,1,mammifero
+1,1,0,1,6,0,insetto
+0,0,1,1,4,1,mammifero
+1,0,0,1,0,0,invertebrato
+1,1,1,1,2,1,uccello
