@@ -90,7 +90,7 @@ public class Agent {
 					"ma ho bisogno di almeno " + MININSTANCES + " per poter imparare :(");
 			
 			while (true) {
-				System.out.println(name() + ": quante nuove instanze si vuol inserire? " +
+				System.out.println(name() + ": quante nuove instanze vuoi inserire? " +
 					"(almeno " + (MININSTANCES - data.numInstances()) + ")");
 				InputManager.prompt();
 				try {
@@ -107,7 +107,7 @@ public class Agent {
 		/** Ci sono abbastanza istanze. */
 		else {
 			while (true) {
-				System.out.println(name() + ": quante nuove instanze si vuol inserire? (almeno 1)");
+				System.out.println(name() + ": quante nuove instanze vuoi inserire? (almeno 1)");
 				InputManager.prompt();
 				try {
 					numNewInstances = InputManager.parseInt(reader.readLine());
