@@ -6,7 +6,7 @@
 @attribute polmoni {0,1}
 @attribute zampe numeric
 @attribute coda {0,1}
-@attribute classe {mammifero,pesce,uccello,invertebrato,insetto,anfibio,rettile,uccellino}
+@attribute classe {mammifero,pesce,uccello,invertebrato,insetto,anfibio,rettile}
 
 @data
 0,0,1,1,4,0,mammifero
@@ -86,7 +86,7 @@
 0,0,1,1,2,1,mammifero
 0,0,1,0,0,1,rettile
 1,0,0,0,0,0,invertebrato
-1,1,1,1,2,1,uccellino
+1,1,1,1,2,1,uccello
 1,1,1,1,2,1,uccello
 1,0,1,1,0,1,rettile
 1,0,0,1,0,0,invertebrato
