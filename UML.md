@@ -13,6 +13,7 @@ Lo schema UML è stato generato usando il tool [yuml](https://yuml.me/diagram/sc
 [Instances|-Instances: List<Instance>;-Attributes: List<Attribute>|+classAttribute(): Attribute]
 [Instance|+dataset(): Instances;+classAttribute(): Attribute]
 [Attribute;-Name;-Type]
+[Evaluation|+Evaluation(train: Instances);+evaluateModel(c: Classifier, test: Instances)|+confusionMatrix();+errorRate();+recall();+precision();+kappa()]
 
 [Agent]->[Problem]
 [Agent]->[Classifier]
@@ -22,5 +23,8 @@ Lo schema UML è stato generato usando il tool [yuml](https://yuml.me/diagram/sc
 [Instances]++-[Attribute]
 [Instance]++-[Attribute]
 [Classifier]->[Instances]
+
+[Evaluation]++-[Classifier]
+[Evaluation]->[Instances]
 
 ```
