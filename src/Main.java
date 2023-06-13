@@ -1,4 +1,5 @@
 import weka.classifiers.trees.J48;
+import weka.classifiers.trees.RandomForest;
 
 public class Main {
 	
