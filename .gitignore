@@ -21,3 +21,6 @@
 
 # IDE
 .vscode/*
+
+# Hidden to students
+private

@@ -37,7 +37,9 @@ public class Problem {
 		m_problemName = problemName;
 		m_problemFileName = problemName + (problemName.endsWith(".arff") ? "" : ".arff");
 		m_problemFile = new File(m_problemFileName);
-		
+
+		InputManager.systemMessage(m_problemFileName);
+
 		if (m_problemFile.isFile()) {
 			InputManager.systemMessage("il problema è già presente in memoria");
 			loadProblem();
