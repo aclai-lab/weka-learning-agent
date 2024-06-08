@@ -3,7 +3,8 @@ JAVAC = javac
 SRCDIR = src
 OUTDIR = bin
 DOCDIR = docs
-WEKADIR = /lib/ # WEKADIR = /opt/weka-3-8-6
+# WEKADIR = /opt/weka-3-8-6
+WEKADIR = /opt/weka-3-9-6
 WEKA = $(WEKADIR)/weka.jar
 SRCS = $(wildcard $(SRCDIR)/*.java)
 
