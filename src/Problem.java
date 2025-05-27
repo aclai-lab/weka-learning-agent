@@ -134,11 +134,15 @@ public class Problem {
 			}
 
 			/** Attributo numerico */
-			if (words[1].toLowerCase().equals("numeric"))
+			if (words[1].toLowerCase().equals("numeric")) {
 				/** Aggiungiamo l'attributo numerico. */
+				if (i>=numAttributes-1) {
+					InputManager.error("purtroppo non posso ancora gestire le classi numeriche (regressione)\n");
+					InputManager.systemMessage("per favore, inserire un attributo nominale (o implementare la regressione :D)");
+					i--; continue;
+				}
 				attributes.add(new Attribute(words[0]));
-			/** Attributo nominale */
-			else {
+			} else {  /** Attributo nominale */
 				/** Contenitore dei valori nominali. */
 				ArrayList<String> nominalValues = new ArrayList<String>();
 
