@@ -121,7 +121,7 @@ public class InputManager {
      * @throws InputTypeException
      */
     static public String parseDomain(String s) throws InputTypeException {
-        
+
         /** Testata sul sito https://regex101.com/ */
         String p = "^[a-zA-Z0-9]+(?:,[a-zA-Z0-9]+){1,}$";
         /** Se la stringa rispetta il pattern qui su allore ritorna la stringa... */

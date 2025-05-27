@@ -2,9 +2,9 @@ import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 
 public class Main {
-	
+
 	public static void main(String[] args) throws Exception {
-		
+
 		/** Setta il nome dell'utente. */
 		InputManager.setName("luke");
 		/** Creazione nuovo problema. */
