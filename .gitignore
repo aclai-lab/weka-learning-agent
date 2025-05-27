@@ -24,3 +24,6 @@
 
 # Hidden to students
 private
+
+# Ignore weka dir
+weka/
