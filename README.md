@@ -11,6 +11,10 @@ Per installare il programma è necessario avere installato `make` e `java` (la v
 
 Compila con `make main` ed esegui con `make run`.
 
+## Utilizzare i problemi esistenti
+
+Per utilizzare uno dei problemi già esistenti, è necessario copiare il file `.arff.orig` dalla cartella `dataset` e rinominarlo in `<nome_problema>.arff` nella root del progetto.
+
 ## Note
 
 Appena viene chiesto il nome del problema con cui si vuole lavorare, è possibile sceglierne uno dalla cartella `dataset` rispondendo al programma: `dataset/<nome_problema>`.
