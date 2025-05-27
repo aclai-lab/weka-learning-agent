@@ -123,7 +123,7 @@ public class InputManager {
     static public String parseDomain(String s) throws InputTypeException {
 
         /** Testata sul sito https://regex101.com/ */
-        String p = "^[a-zA-Z0-9]+(?:,[a-zA-Z0-9]+){1,}$";
+        String p = "^[a-zA-Z0-9]+(?:\\s*,\\s*[a-zA-Z0-9]+){1,}$";
         /** Se la stringa rispetta il pattern qui su allore ritorna la stringa... */
         if (matches(s, p))
             /** Rimuovi tutti gli spazi vicini alle virgole dal dominio. */
@@ -131,5 +131,17 @@ public class InputManager {
         /** ... altrimenti lancia un errore. */
         else
             throw new InputTypeException("\"" + s + "\" non è un dominio valido!");
+    }
+
+    /**
+     * Gestisce la terminazione anticipata e inaspettata del programma.
+     */
+    static public void handleInterrupt() {
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+			public void run() {
+				System.out.println("\n" + Colors.blue("sistema") + ": arresto del sistema in corso...");
+				System.out.print(Colors.blue("sistema") + ": il sistema è stato arrestato correttamente");
+			}
+		});
     }
 }

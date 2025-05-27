@@ -1,10 +1,11 @@
+/** Librerie per la gestione il machine learning. */
 import weka.classifiers.trees.J48;
 import weka.classifiers.trees.RandomForest;
 
 public class Main {
-
 	public static void main(String[] args) throws Exception {
-
+		/** Gestisce la terminazione del processo. */
+		InputManager.handleInterrupt();
 		/** Setta il nome dell'utente. */
 		InputManager.setName("luke");
 		/** Creazione nuovo problema. */

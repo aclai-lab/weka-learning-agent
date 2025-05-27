@@ -1,6 +1,8 @@
 /** Librerie */
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.stream.Stream;
 
 import weka.core.*;
 import weka.core.converters.ConverterUtils.DataSource;
@@ -122,7 +124,7 @@ public class Problem {
 
 			/** Le parole della riga. */
 			String[] words;
-			words = inputLine.split(" ");
+			words = inputLine.split(" ", 2);
 
 			if (words.length > 2)
 				InputManager.warn("sono stati passati " + words.length +
