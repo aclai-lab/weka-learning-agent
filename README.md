@@ -1,13 +1,17 @@
 
 # Learning Agent
 
-Questo è un piccolo programma d'esempio per mostrare come interfacciarsi ad un modello weka, e mostrare il miglioramento graduale di un certo modello che guarda sempre più istanze. 
+Questo è un piccolo programma d'esempio per mostrare come interfacciarsi ad un modello weka, e mostrare il miglioramento graduale di un certo modello che guarda sempre più istanze.
 
-# Utilizzo
+## Installazione
+
+Per installare il programma è necessario avere installato `make` e `java` (la versione raccomandata di java è la 17 ma è ). Scaricare weka eseguendo lo script `install.sh` (on linux e mac) e lo script `install.bat` su windows. _You are good to go_!
+
+## Utilizzo
 
 Compila con `make main` ed esegui con `make run`.
 
-# Note
+## Note
 
 Appena viene chiesto il nome del problema con cui si vuole lavorare, è possibile sceglierne uno dalla cartella `dataset` rispondendo al programma: `dataset/<nome_problema>`.
 
