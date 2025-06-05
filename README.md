@@ -11,7 +11,7 @@ Per installare il programma è necessario avere installato `make` e `java` (la v
 
 ## Utilizzo
 
-Compila con `make main` ed esegui con `make run`.
+Compila con `make main` ed esegui con `make run`. È possibile avviare l'interfaccia grafica di weka con `make start-weka`.
 
 ## Utilizzare i problemi esistenti
 

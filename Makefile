@@ -20,6 +20,9 @@ install:
 run:
 	@java --add-opens java.base/java.lang=ALL-UNNAMED -cp "$(OUTDIR):$(WEKA)" Main || true
 
+start-weka:
+	@./${WEKADIR}/weka.sh
+
 # doc: $(SRCS)
 # 	javadoc -d $(DOCDIR) -cp "$(OUTDIR):$(WEKA)" -sourcepath $(SRCDIR) -exclude Main Agent.java Program.java
 
