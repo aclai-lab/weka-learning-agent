@@ -14,6 +14,9 @@ main: $(SRCS)
 	@mkdir -p $(OUTDIR)
 	@$(JAVAC) -cp $(WEKA) $(SRCS) -d $(OUTDIR)
 
+install:
+	@./install.sh
+
 run:
 	@java --add-opens java.base/java.lang=ALL-UNNAMED -cp "$(OUTDIR):$(WEKA)" Main || true
 

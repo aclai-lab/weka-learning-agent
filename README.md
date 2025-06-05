@@ -7,6 +7,8 @@ Questo è un piccolo programma d'esempio per mostrare come interfacciarsi ad un 
 
 Per installare il programma è necessario avere installato `make` e `java` (la versione raccomandata di java è la `17` ma funziona correttamente anche l'ultima stabile, la `21`). Scaricare weka eseguendo lo script `install.sh` (on linux e mac) e lo script `install.bat` su windows. _You are good to go_!
 
+> Su sistemi linux e mac è possibile anche utilizzare solo il comando `make install` per installare tutto.
+
 ## Utilizzo
 
 Compila con `make main` ed esegui con `make run`.

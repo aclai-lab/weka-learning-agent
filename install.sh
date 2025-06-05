@@ -4,8 +4,8 @@
 if [[ "$OSTYPE" == "darwin"* ]]; then
     echo -n "Running on macOS "
     if [[ "$(uname -m)" == "arm64" ]]; then
-        DOWNLOAD_URL=https://prdownloads.sourceforge.net/weka/weka-3-9-6-azul-zulu-arm-osx.dmg
         echo "(arm64)"
+        DOWNLOAD_URL=https://prdownloads.sourceforge.net/weka/weka-3-9-6-azul-zulu-arm-osx.dmg
     else
         echo "(amd64)"
         DOWNLOAD_URL=https://prdownloads.sourceforge.net/weka/weka-3-9-6-azul-zulu-osx.dmg
