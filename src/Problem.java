@@ -155,7 +155,7 @@ public class Problem {
 					/** Ciclo per aggiungere i valori nominali. */
 					for (int j=0; j<subWords.length; j++)
 						/** Se la sottoparola (= valore nominale) è non vuota, aggiungi. */
-						if (!subWords[j].isEmpty()) nominalValues.add(subWords[j]);
+						if (!subWords[j].strip().isEmpty()) nominalValues.add(subWords[j].strip());
 
 					/** Aggiungiamo l'attributo nominale. */
 					attributes.add(new Attribute(words[0],nominalValues));
